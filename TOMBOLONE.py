@@ -6,6 +6,32 @@ License: BSD 3 clause
 
 """
 
+
+
+"""
+Cartella   
+----------------------------------
+| x11  		x12  	...  	x15  | 
+| x22 		x22 	... 	x25  |	
+| x33 		x32		...		x35  |
+----------------------------------
+
+Tabellone contains all the numbers from 1 to 90 in lexicographic order, i.e. 
+------------------------------------------------------------
+| 1  		2  		... 	5   | 6		7		...		10 | 
+| 11 		12 		... 	15  | 16	17		...		20 |	
+| 21 		22		...		25  | 26	27		...		30 |
+------------------------------------------------------------
+| ...		...		...		... | ...	...		...		...|
+------------------------------------------------------------
+| 31		32		...		35	| 36	37		...		40 |
+| ...		...		...		...	| ...	...		...		...|
+| 81		82		...		85  | 86 	87		...		90 |
+------------------------------------------------------------
+"""
+
+
+
 import numpy as np
 
 
@@ -13,32 +39,6 @@ import numpy as np
 
 
 class cartella(object):
-
-    """
-    Extraction and study of features with missing data from a given dataset.
-
-    Private parameters
-    ----------
-    __missings : pandas data frame built after the extraction of features with Nan values. To be used internally by the class methods
-    __ifcount : boolean variable, used to check whether or not the "count" method has been called
-    __trs : double variable, used to store the threshold value
-
-    Attributes
-    ----------
-    n_features_ : int
-    The number of features containing missing values.
-
-    support_ : array of shape [n_features].
-    The mask of selected features.
-
-    n_features_filter_ : int.
-    The number of features whose missing values percentage is higher than a given threshold.
-
-    support_filter_ : array of shape [n_features_filter_].
-    The mask of selected features whose missing value percentage is higher than a given threshold.
-
-    """
-
 
 
     def __init__(self,rows):
@@ -69,10 +69,27 @@ class cartella(object):
 
         return self._fill_cartella(seed)
 
+    def lex_fill_cartella(self,ntab=1):
+
+        """
+
+            Fill our cartella according to be a part of Cartellone
+            Parameters
+            ----------
+            ntab : is the position in Cartellone
+
+            Return:
+
+            self.cartella: numpy array type, shape=[self.rows,self.__columns]
+
+        """
+
+        return self._lex_fill_cartella(ntab)
 
 
 
  ##############################################################################################
+
 
     def _fill_cartella(self,seed=1234):
 
@@ -98,61 +115,35 @@ class cartella(object):
                 self.scheda[self.scheda==j[0]]=numbo
 
 
+    def _lex_fill_cartella(self,ntab=1):
+        if not isinstance(ntab, int):
+            raise ValueError('ntab has to be a strictly positive integer <=6 !')
+        if(ntab<=0 or ntab>7):
+        	raise ValueError('ntab has to be a strictly positive integer <=6 !')  
+        self.scheda = np.zeros((self.rows, self.__columns))
+
+        for i in range(0,self.rows):
+        	if(ntab<3):
+        		self.scheda[i]= list(np.asarray(self.__columns*( 2*i + ntab -1  )) + range(1, self.__columns+1))  
+        	if(ntab>2 and ntab <5):
+        		self.scheda[i]= list(np.asarray(self.__columns*( 2*i + ntab -1 +4 )) + range(1, self.__columns+1))
+        	if(ntab>4 and ntab <7):	
+        		self.scheda[i]= list(np.asarray(self.__columns*( 2*i + ntab -1 +8 )) + range(1, self.__columns+1))
 
 
-
-class tabellone(object):
-
-	"""
-	
-		Tabellone contains all the numbers from 1 to 90 in lexicographic order, i.e. 
-		------------------------------------------------------------
-		| 1  		2  		... 	5   | 6		7		...		10 | 
-		| 11 		12 		... 	15  | 16	17		...		20 |	
-		| 21 		22		...		25  | 26	27		...		30 |
-		------------------------------------------------------------
-		| ...		...		...		... | ...	...		...		...|
-		------------------------------------------------------------
-		| 31		32		...		35	| 36	37		...		40 |
-		| ...		...		...		...	| ...	...		...		...|
-		| 81		82		...		85  | 86 	87		...		90 |
-		------------------------------------------------------------
-	
-	"""
-
-    def __init__(self):
-    	self.__columns=10
-    	self.__rows=9
-        #self.__missings = None
-        #self.__ifcount = True
-        #self.__trs = 0.
-
-
+class tabellone(cartella):
 
     def fill_tabellone(self):
 
-        """
-
-            Fill our tabellone according to the italian convention
-            Parameters
-            ----------
- 
-            Return:
-
-            self.tabellone: numpy array type, shape=[self.__rows,self.__columns]  
-
-        """
-
-        return self._fill_tabellone()
+	   return self._fill_tabellone()
 
 
  ##############################################################################################
 
     def _fill_tabellone(self):
      
-    	self.tab = np.zeros((self.__rows, self.__columns))
-        for i in range(0,self.__rows):
-        	self.tab[i]= list(np.asarray(self.__columns*i) + range(1, 11))   
+#         for i in range(0,6):
+#        	self.tab.append(cartella)   
 
 
 
@@ -160,23 +151,24 @@ class tabellone(object):
 
 
 
-class player(object):
+
+#class player(cartella):
 
 	"""
 		player is an object which can have Ncartella number of cartelle. 
 		if Ncartella==0 means the player has a tabellone
 	"""
 
-	def __init__(self,Ncart):
-		self.Ncart=Ncart
-		if not isinstance(self.Ncart, int):
-        	raise ValueError('Number of Cartelle has to be an integer!')
+#	def __init__(self,Ncart):
+#		self.Ncart=Ncart
+#		if not isinstance(self.Ncart, int):
+ #      		raise ValueError('Number of Cartelle has to be an integer!')
         #self.__missings = None
         #self.__ifcount = True
         #self.__trs = 0.
 
 
-    def check_cartella(self):
+  #  def check_cartella(self):
 
         """
 
@@ -191,14 +183,34 @@ class player(object):
 
         """
 
-        return self._check_cartella()
+   #     return self._check_cartella()
+
+    #def check_tabellone(self):
+
+        """
+
+            Fill our cartella according to the italian convention
+            Parameters
+            ----------
+            seed : int type
+
+            Return:
+
+            self.cartella: numpy array type, shape=[self.rows,self.__columns]
+
+        """
+
+ #       return self._check_tabellone()
 
 
 
 
  ##############################################################################################
 
-    def _check_cartella(self):
+  #  def _check_cartella(self):
 
 	#TODO
 
+  #  def _check_tabellone(self):
+
+	#TODO
