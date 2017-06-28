@@ -8,33 +8,7 @@ License: BSD 3 clause
 
 
 
-"""
-Cartella   
-----------------------------------
-| x11  		x12  	...  	x15  | 
-| x22 		x22 	... 	x25  |	
-| x33 		x32		...		x35  |
-----------------------------------
-
-Tabellone contains all the numbers from 1 to 90 in lexicographic order, i.e. 
-------------------------------------------------------------
-| 1  		2  		... 	5   | 6		7		...		10 | 
-| 11 		12 		... 	15  | 16	17		...		20 |	
-| 21 		22		...		25  | 26	27		...		30 |
-------------------------------------------------------------
-| ...		...		...		... | ...	...		...		...|
-------------------------------------------------------------
-| 31		32		...		35	| 36	37		...		40 |
-| ...		...		...		...	| ...	...		...		...|
-| 81		82		...		85  | 86 	87		...		90 |
-------------------------------------------------------------
-"""
-
-
-
 import numpy as np
-
-
 
 
 
@@ -46,9 +20,6 @@ class cartella(object):
         if not isinstance(self.rows, int):
             raise ValueError('Number of rows has to be an integer!')
         self.__columns=5
-        #self.__missings = None
-        #self.__ifcount = True
-        #self.__trs = 0.
 
 
 
@@ -65,9 +36,18 @@ class cartella(object):
 
             self.cartella: numpy array type, shape=[self.rows,self.__columns]
 
+                        Cartella
+            ----------------------------------
+            | x11  		x12  	...  	x15  |
+            | x22 		x22 	... 	x25  |
+            | x33 		x32	    ...	    x35  |
+            ----------------------------------
+
         """
 
         return self._fill_cartella(seed)
+
+
 
     def lex_fill_cartella(self,ntab=1):
 
@@ -89,7 +69,6 @@ class cartella(object):
 
 
  ##############################################################################################
-
 
     def _fill_cartella(self,seed=1234):
 
@@ -115,36 +94,56 @@ class cartella(object):
                 self.scheda[self.scheda==j[0]]=numbo
 
 
-    def _lex_fill_cartella(self,ntab=1):
-        if not isinstance(ntab, int):
-            raise ValueError('ntab has to be a strictly positive integer <=6 !')
-        if(ntab<=0 or ntab>7):
-        	raise ValueError('ntab has to be a strictly positive integer <=6 !')  
-        self.scheda = np.zeros((self.rows, self.__columns))
 
+    def _lex_fill_cartella(self,ntab=1):
+        self.scheda = np.zeros((self.rows, self.__columns))
+        inc=np.array([-1,-1,3,3,7,7])
         for i in range(0,self.rows):
-        	if(ntab<3):
-        		self.scheda[i]= list(np.asarray(self.__columns*( 2*i + ntab -1  )) + range(1, self.__columns+1))  
-        	if(ntab>2 and ntab <5):
-        		self.scheda[i]= list(np.asarray(self.__columns*( 2*i + ntab -1 +4 )) + range(1, self.__columns+1))
-        	if(ntab>4 and ntab <7):	
-        		self.scheda[i]= list(np.asarray(self.__columns*( 2*i + ntab -1 +8 )) + range(1, self.__columns+1))
+            self.scheda[i]= np.asarray(self.__columns*( 2*i + ntab + inc[ntab-1]  )) + np.arange(1, self.__columns+1)
+
+
+
+##############################################################################################
+##############################################################################################
+
 
 
 class tabellone(cartella):
 
+    def __init__(self):
+        self.__missings = None
+
+
     def fill_tabellone(self):
+        """
 
+        Tabellone contains all the numbers from 1 to 90 in lexicographic order, i.e.
+        ------------------------------------------------------------
+        | 1  		2  		... 	5   | 6		7		...		10 |
+        | 11 		12 		... 	15  | 16	17		...		20 |
+        | 21 		22		...		25  | 26	27		...		30 |
+        ------------------------------------------------------------
+        | ...		...		...		... | ...	...		...		...|
+        ------------------------------------------------------------
+        | 31		32		...		35	| 36	37		...		40 |
+        | ...		...		...		...	| ...	...		...		...|
+        | 81		82		...		85  | 86 	87		...		90 |
+        ------------------------------------------------------------
+
+        """
 	   return self._fill_tabellone()
-
 
  ##############################################################################################
 
-    def _fill_tabellone(self):
-     
-#         for i in range(0,6):
-#        	self.tab.append(cartella)   
 
+
+    def _fill_tabellone(self):
+
+        self.tab=[]
+        for i in range(0,6):
+            A=cartella(3)
+            A.lex_fill_cartella(i+1)
+            self.tab.append(A.scheda)
 
 
 
@@ -154,10 +153,10 @@ class tabellone(cartella):
 
 #class player(cartella):
 
-	"""
-		player is an object which can have Ncartella number of cartelle. 
-		if Ncartella==0 means the player has a tabellone
-	"""
+"""
+	player is an object which can have Ncartella number of cartelle.
+	if Ncartella==0 means the player has a tabellone
+"""
 
 #	def __init__(self,Ncart):
 #		self.Ncart=Ncart
@@ -170,37 +169,11 @@ class tabellone(cartella):
 
   #  def check_cartella(self):
 
-        """
-
-            Fill our cartella according to the italian convention
-            Parameters
-            ----------
-            seed : int type
-
-            Return:
-
-            self.cartella: numpy array type, shape=[self.rows,self.__columns]
-
-        """
-
    #     return self._check_cartella()
 
     #def check_tabellone(self):
 
-        """
-
-            Fill our cartella according to the italian convention
-            Parameters
-            ----------
-            seed : int type
-
-            Return:
-
-            self.cartella: numpy array type, shape=[self.rows,self.__columns]
-
-        """
-
- #       return self._check_tabellone()
+   #       return self._check_tabellone()
 
 
 
