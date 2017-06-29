@@ -88,11 +88,11 @@ class cartella(object):
             occur,count=np.unique(self.scheda,return_counts=True)
             for j in [t for t in zip(occur,count) if t[1]>1]:
                 control=True
-                numbo=int((j[0]/10))*10+np.random.randint(1, 9,size=j[1])
+                lenght=len(self.scheda[self.scheda==j[0]])
+                numbo=int((j[0]/10))*10+np.random.randint(1, 9,size=lenght)
                 if((numbo>90).any()):
-                    numbo=80+np.random.randint(1, 10,size=j[1])
+                    numbo=80+np.random.randint(1, 10,size=length)
                 self.scheda[self.scheda==j[0]]=numbo
-
 
 
     def _lex_fill_cartella(self,ntab=1):
@@ -131,7 +131,7 @@ class tabellone(cartella):
         ------------------------------------------------------------
 
         """
-	   return self._fill_tabellone()
+        return self._fill_tabellone()
 
  ##############################################################################################
 
