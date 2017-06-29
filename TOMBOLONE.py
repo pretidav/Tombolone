@@ -15,7 +15,7 @@ import numpy as np
 class cartella(object):
 
 
-    def __init__(self,rows):
+    def __init__(self,rows=3):
         self.rows=rows
         if not isinstance(self.rows, int):
             raise ValueError('Number of rows has to be an integer!')
@@ -40,7 +40,7 @@ class cartella(object):
             ----------------------------------
             | x11  		x12  	...  	x15  |
             | x22 		x22 	... 	x25  |
-            | x33 		x32	    ...	    x35  |
+            | x33 		x32	...     x35  |
             ----------------------------------
 
         """
@@ -118,17 +118,17 @@ class tabellone(cartella):
         """
 
         Tabellone contains all the numbers from 1 to 90 in lexicographic order, i.e.
-        ------------------------------------------------------------
+        --------------------------------------------------------------------------------------------
         | 1  		2  		... 	5   | 6		7		...		10 |
         | 11 		12 		... 	15  | 16	17		...		20 |
-        | 21 		22		...		25  | 26	27		...		30 |
-        ------------------------------------------------------------
-        | ...		...		...		... | ...	...		...		...|
-        ------------------------------------------------------------
-        | 31		32		...		35	| 36	37		...		40 |
-        | ...		...		...		...	| ...	...		...		...|
-        | 81		82		...		85  | 86 	87		...		90 |
-        ------------------------------------------------------------
+        | 21 		22		...	25  | 26	27		...		30 |
+        --------------------------------------------------------------------------------------------
+        | ...		...		...	... | ...	...		...		...|
+        --------------------------------------------------------------------------------------------
+        | 31		32		...	35  | 36	37		...		40 |
+        | ...		...		...	... | ...	...		...		...|
+        | 81		82		...	85  | 86 	87		...		90 |
+        --------------------------------------------------------------------------------------------
 
         """
         return self._fill_tabellone()
@@ -151,39 +151,55 @@ class tabellone(cartella):
 
 
 
-#class player(cartella):
+class player(tabellone):
 
-"""
+    """
 	player is an object which can have Ncartella number of cartelle.
 	if Ncartella==0 means the player has a tabellone
-"""
+    """
 
-#	def __init__(self,Ncart):
-#		self.Ncart=Ncart
-#		if not isinstance(self.Ncart, int):
- #      		raise ValueError('Number of Cartelle has to be an integer!')
+    def __init__(self,seedplayer):
+        self.seedplayer=seedplayer
+	if not isinstance(self.seedplayer, int):
+            raise ValueError('Player ID has to be an integer!')
         #self.__missings = None
         #self.__ifcount = True
         #self.__trs = 0.
 
 
-  #  def check_cartella(self):
-
-   #     return self._check_cartella()
-
-    #def check_tabellone(self):
-
-   #       return self._check_tabellone()
-
-
+    def take_cartella(self,Ncart):
+        return self._take_cartella(Ncart)
+        
+   # def check_cartella(self,Ncart):
+   #     return self._check_cartella(Ncart)
 
 
  ##############################################################################################
+ 
+    def _take_cartella(self,Ncart):
+        if(Ncart>0):
+            self.collection=[]
+            for i in range(0,Ncart):
+                C=cartella(3)
+                C.fill_cartella(i+self.seedplayer)
+                self.collection.append(C.scheda)
+        elif(Ncart==0):
+            self.collection=tabellone
+            self.collection.fill_tabellone
 
-  #  def _check_cartella(self):
+            
+ 
+  #  def _check_cartella(self,Ncart):
+  #      if(Ncart>0):
+  #          for i in range(0,Ncart):
+  #             
+  #
 
-	#TODO
+  #      elif(Ncart==0):
 
-  #  def _check_tabellone(self):
 
-	#TODO
+
+            
+        
+
+ 
