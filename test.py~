@@ -25,5 +25,5 @@ for i in range(0,3):
         print("test number = ", num)
         david.check_cartella(num)
 
-
+david.check_cartella(num)
 

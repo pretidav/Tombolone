@@ -154,52 +154,64 @@ class tabellone(cartella):
 class player(tabellone):
 
     """
-	player is an object which can have Ncartella number of cartelle.
+
+    player is an object which can have Ncartella number of cartelle.
 	if Ncartella==0 means the player has a tabellone
+
     """
 
     def __init__(self,seedplayer):
-        self.seedplayer=seedplayer
-	if not isinstance(self.seedplayer, int):
+        self.__seedplayer=seedplayer
+        self.prize=dict.fromkeys(['ambo','terna','quaterna','cinquina','tombola'])
+        self.__checklist=[2,3,4,5]
+        self.__checkbool=[['ambo',False],['terna',False],['quaterna',False],['cinquina',False],['tombola',False]]
+
+	if not isinstance(self.__seedplayer, int):
             raise ValueError('Player ID has to be an integer!')
-        #self.__missings = None
-        #self.__ifcount = True
-        #self.__trs = 0.
 
 
     def take_cartella(self,Ncart):
         return self._take_cartella(Ncart)
-        
-   # def check_cartella(self,Ncart):
-   #     return self._check_cartella(Ncart)
+
+    def check_cartella(self,extraction):
+        return self._check_cartella(extraction)
 
 
  ##############################################################################################
- 
+
     def _take_cartella(self,Ncart):
         if(Ncart>0):
             self.collection=[]
             for i in range(0,Ncart):
-                C=cartella(3)
-                C.fill_cartella(i+self.seedplayer)
+                C=cartella(3)#to be generalized
+                C.fill_cartella(i+self.__seedplayer)
                 self.collection.append(C.scheda)
         elif(Ncart==0):
-            self.collection=tabellone
-            self.collection.fill_tabellone
-
-            
- 
-  #  def _check_cartella(self,Ncart):
-  #      if(Ncart>0):
-  #          for i in range(0,Ncart):
-  #             
-  #
-
-  #      elif(Ncart==0):
+            temp=tabellone()
+            temp.fill_tabellone()
+            self.collection=temp.tab
+        self.__rep=np.zeros([len(self.collection),3])
 
 
 
-            
-        
+    def _check_cartella(self,extraction):
+        length=(len(self.collection))
+        if(length==0):
+            raise ValueError('You have to call the \"take_cartella\" method before!')
+        for j in range(0,length):
+            if extraction in self.collection[j]:
+                self.__rep[j,np.where(self.collection[j]==extraction)[0]]+=1
+            if(self.__rep[j].sum()==15):
+                self.prize['tombola']=True
+                
+        for j in range(0,len(self.__checklist)):
+            if (self.__rep==self.__checklist[j]).any(): self.__checkbool[j][1]=True
+        index=[i[0] for i in enumerate(self.__checkbool) if i[1][1]]
+        if(len(index)>0):
+            self.prize[self.__checkbool[index[0]][0]]=True
 
- 
+        self.__checklist=[d for (d, [blobo,remove]) in zip(self.__checklist, self.__checkbool) if not remove]
+        self.__checkbool=[[d,j] for d,j in self.__checkbool if not j]
+
+        print(self.__rep)
+        print(self.prize)
