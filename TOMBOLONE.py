@@ -260,8 +260,8 @@ class partita(player):
             players.append(A)
             player_prizes.append(dict())
 
-        for i in players:
-            print i.collection
+     #   for i in players:
+     #       print i.collection
 
         for i in range(0,self.rows*30):
             for j in players:
@@ -276,3 +276,9 @@ class partita(player):
                 if(check):
                     self.prizes.remove(self.prizes[0])
         print(player_prizes)
+
+
+
+    #def _log(self):
+
+        
