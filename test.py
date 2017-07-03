@@ -1,7 +1,8 @@
 
 
-from TOMBOLONE import cartella,tabellone,player
+from TOMBOLONE import cartella,tabellone,player,partita
 import numpy as np
+"""
 A=cartella(5)
 A.fill_cartella(1500)
 C=tabellone(5)
@@ -20,15 +21,16 @@ print C.tab[3]
 print C.tab[4]
 print C.tab[5]
 
-#david=player(100,4)    
-#david.take_cartella(2) 
-#for j in range(0,len(david.collection)):
-#    print(david.collection[j])
-#for i in range(0,3):
-#    for j in range(0,5):
-#        num=david.collection[0][i,j]
-#        print("test number = ", num)
-#        david.check_cartella(num)
+david=player(100,2)
+david.take_cartella(2)
+for j in range(0,len(david.collection)):
+    print(david.collection[j])
+for i in range(0,2):
+    for j in range(0,5):
+        num=david.collection[0][i,j]
+        print("test number = ", num)
+        david.check_cartella(num)
+"""
 
-
-
+A=partita(3,[1,0,4],3)
+A.play()

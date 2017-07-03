@@ -99,7 +99,7 @@ class cartella(object):
         self.scheda = np.zeros((self.rows, self.__columns))
         inc=np.zeros(6)
         for j in range(0,3):
-            inc[2*j]=(self.rows-1)*2*j   -1 
+            inc[2*j]=(self.rows-1)*2*j   -1
             inc[2*j+1]=(self.rows-1)*2*j -1
         for i in range(0,self.rows):
             self.scheda[i]= np.asarray(self.__columns*( 2*i + ntab + inc[ntab-1]  )) + np.arange(1, self.__columns+1)
@@ -120,7 +120,7 @@ class tabellone(cartella):
     def fill_tabellone(self):
         """
 
-        Tabellone contains all the numbers from 1 to (rows*5*6) in lexicographic order, i.e. if rows==3 : 
+        Tabellone contains all the numbers from 1 to (rows*5*6) in lexicographic order, i.e. if rows==3 :
 
         --------------------------------------------------------------------------------------------
         | 1  		2  		... 	5   | 6		7		...		10 |
@@ -145,7 +145,7 @@ class tabellone(cartella):
 
         self.tab=[]
         for i in range(0,6):
-            A=cartella(self.rows)   #to be generalized 
+            A=cartella(self.rows)   #to be generalized
             A.lex_fill_cartella(i+1)
             self.tab.append(A.scheda)
 
@@ -191,7 +191,7 @@ class player(tabellone):
                 C.fill_cartella(i+self.__seedplayer)
                 self.collection.append(C.scheda)
         elif(Ncart==0):
-            temp=tabellone()
+            temp=tabellone(self.rows)
             temp.fill_tabellone()
             self.collection=temp.tab
         self.__rep=np.zeros([len(self.collection),self.rows])
@@ -205,9 +205,9 @@ class player(tabellone):
         for j in range(0,length):
             if extraction in self.collection[j]:
                 self.__rep[j,np.where(self.collection[j]==extraction)[0]]+=1
-            if(self.__rep[j].sum()==(self.rows*5)):#to be generalized 
+            if(self.__rep[j].sum()==(self.rows*5)):#to be generalized
                 self.prize['tombola']=True
-                
+
         for j in range(0,len(self.__checklist)):
             if (self.__rep==self.__checklist[j]).any(): self.__checkbool[j][1]=True
         index=[i[0] for i in enumerate(self.__checkbool) if i[1][1]]
@@ -217,43 +217,64 @@ class player(tabellone):
         self.__checklist=[d for (d, [blobo,remove]) in zip(self.__checklist, self.__checkbool) if not remove]
         self.__checkbool=[[d,j] for d,j in self.__checkbool if not j]
 
-        print(self.__rep)
-        print(self.prize)
+        #print(self.__rep)
+        #print(self.prize)
 
 
+ ##############################################################################################
 
-
-
-#TODO
 class partita(player):
-
-    """
-    partita is an object which takes as input a list of a list with pairs {(playerID,Ncart)}. 
-    It ends when a player scores tombola, and report a log of prizes for every player.
-    """
 
     def __init__(self,Nplayer,cartlist,rows):
         self.__Nplayer=Nplayer
         if not isinstance(self.__Nplayer, int):
             raise ValueError('Number of players has to be an integer!')
         self.__cartlist=cartlist
-        if not isinstance(self.__cartlist,):
-             raise ValueError('list of cartelle is not a list!')
-        if(len(self.__cartlist)!=Nplayer):
-             raise ValueError('list of cartelle has to be have Nplayer length!')
+        if not isinstance(self.__cartlist,list):
+            raise ValueError('list of cartelle is not a list!')
+        elif not all(isinstance(s, int) for s in cartlist):
+            raise ValueError('cartlist has to be a list of integers!')
+        elif(len(self.__cartlist)!=Nplayer):
+            raise ValueError('list of cartelle has to have Nplayer length!')
+        self.rows=rows
+        if not isinstance(self.rows,int):
+            raise ValueError('Number of rows has to be int!')
+        self.prizes=['ambo','terna','quaterna','cinquina','tombola']
 
-    def start(self,seedplay):
-        return self._start(seedplay)
+    def play(self):
+        """
+        """
+        return self._play()
 
     def log(self):
         return self._log()
-        
+
 ###########################################################################################
 ###########################################################################################
 
-    def _start(self,seedplay):
-        extractions=np.arange(1,91)
-        np.random.shuffle(extractions) #seed? 
-        for i in range(0,len(extractions)):
-            print i
+    def _play(self):
+        extractions=np.arange(1,self.rows*30+1)
+        np.random.shuffle(extractions)
+        players=[]
+        player_prizes=[]
+        for i in range(0,self.__Nplayer):
+            A=player(i,self.rows)
+            A.take_cartella(self.__cartlist[i])
+            players.append(A)
+            player_prizes.append(dict())
 
+        for i in players:
+            print i.collection
+
+        for i in range(0,self.rows*30):
+            for j in players:
+                j.check_cartella(extractions[i])
+            if(i>=1):
+                check=False
+                for k in range(0,len(players)):
+                    if(players[k].prize[self.prizes[0]]==True):
+                        player_prizes[k][self.prizes[0]]=i
+                        check=True
+                if(check):
+                    self.prizes.remove(self.prizes[0])
+        print(player_prizes)
