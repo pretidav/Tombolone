@@ -145,7 +145,7 @@ class tabellone(cartella):
 
         self.tab=[]
         for i in range(0,6):
-            A=cartella(self.rows)   #to be generalized
+            A=cartella(self.rows)   
             A.lex_fill_cartella(i+1)
             self.tab.append(A.scheda)
 
@@ -187,7 +187,7 @@ class player(tabellone):
         if(Ncart>0):
             self.collection=[]
             for i in range(0,Ncart):
-                C=cartella(self.rows)#to be generalized
+                C=cartella(self.rows)
                 C.fill_cartella(i+self.__seedplayer)
                 self.collection.append(C.scheda)
         elif(Ncart==0):
@@ -205,7 +205,7 @@ class player(tabellone):
         for j in range(0,length):
             if extraction in self.collection[j]:
                 self.__rep[j,np.where(self.collection[j]==extraction)[0]]+=1
-            if(self.__rep[j].sum()==(self.rows*5)):#to be generalized
+            if(self.__rep[j].sum()==(self.rows*5)): 
                 self.prize['tombola']=True
 
         for j in range(0,len(self.__checklist)):
@@ -216,9 +216,6 @@ class player(tabellone):
 
         self.__checklist=[d for (d, [blobo,remove]) in zip(self.__checklist, self.__checkbool) if not remove]
         self.__checkbool=[[d,j] for d,j in self.__checkbool if not j]
-
-        #print(self.__rep)
-        #print(self.prize)
 
 
  ##############################################################################################
@@ -272,9 +269,10 @@ class partita(player):
             if(i>=1):
                 check=False
                 for k in range(0,len(players)):
-                    if(players[k].prize[self.prizes[0]]==True):
-                        player_prizes[k][self.prizes[0]]=i
-                        check=True
+                    if (len(self.prizes)):
+                        if(players[k].prize[self.prizes[0]]==True):
+                            player_prizes[k][self.prizes[0]]=i+1
+                            check=True
                 if(check):
                     self.prizes.remove(self.prizes[0])
         print(player_prizes)
