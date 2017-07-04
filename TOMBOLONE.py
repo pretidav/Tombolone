@@ -145,7 +145,7 @@ class tabellone(cartella):
 
         self.tab=[]
         for i in range(0,6):
-            A=cartella(self.rows)   
+            A=cartella(self.rows)
             A.lex_fill_cartella(i+1)
             self.tab.append(A.scheda)
 
@@ -205,7 +205,7 @@ class player(tabellone):
         for j in range(0,length):
             if extraction in self.collection[j]:
                 self.__rep[j,np.where(self.collection[j]==extraction)[0]]+=1
-            if(self.__rep[j].sum()==(self.rows*5)): 
+            if(self.__rep[j].sum()==(self.rows*5)):
                 self.prize['tombola']=True
 
         for j in range(0,len(self.__checklist)):
@@ -253,12 +253,12 @@ class partita(player):
         extractions=np.arange(1,self.rows*30+1)
         np.random.shuffle(extractions)
         players=[]
-        player_prizes=[]
+        self.player_prizes=[]
         for i in range(0,self.__Nplayer):
             A=player(i,self.rows)
             A.take_cartella(self.__cartlist[i])
             players.append(A)
-            player_prizes.append(dict())
+            self.player_prizes.append(dict())
 
      #   for i in players:
      #       print i.collection
@@ -271,14 +271,15 @@ class partita(player):
                 for k in range(0,len(players)):
                     if (len(self.prizes)):
                         if(players[k].prize[self.prizes[0]]==True):
-                            player_prizes[k][self.prizes[0]]=i+1
+                            self.player_prizes[k][self.prizes[0]]=i+1
                             check=True
                 if(check):
                     self.prizes.remove(self.prizes[0])
-        print(player_prizes)
+        #print(player_prizes)
 
 
 
-    #def _log(self):
-
-        
+    def _log(self):
+        for i in range(0,len(self.player_prizes)):
+            for j,l in self.player_prizes[i].items():
+                print self.__cartlist[i],",",j,",",l

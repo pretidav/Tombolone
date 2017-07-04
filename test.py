@@ -33,5 +33,6 @@ import numpy as np
 #        david.check_cartella(num)
 #"""
 
-A=partita(1,[1],3)
+A=partita(3,[1,2,3],3)
 A.play()
+A.log()

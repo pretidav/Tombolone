@@ -1,52 +1,139 @@
-[{'terna': 28, 'cinquina': 79, 'ambo': 18, 'tombola': 84, 'quaterna': 29}]
-[{'terna': 36, 'cinquina': 43, 'ambo': 30, 'tombola': 90, 'quaterna': 40}]
-[{'terna': 51, 'cinquina': 76, 'ambo': 39, 'tombola': 90, 'quaterna': 70}]
-[{'terna': 38, 'cinquina': 68, 'ambo': 30, 'tombola': 79, 'quaterna': 60}]
-[{'terna': 41, 'cinquina': 53, 'ambo': 24, 'tombola': 80, 'quaterna': 45}]
-[{'terna': 25, 'cinquina': 70, 'ambo': 22, 'tombola': 79, 'quaterna': 40}]
-[{'terna': 23, 'cinquina': 83, 'ambo': 14, 'tombola': 85, 'quaterna': 45}]
-[{'terna': 25, 'cinquina': 75, 'ambo': 7, 'tombola': 88, 'quaterna': 44}]
-[{'terna': 22, 'cinquina': 75, 'ambo': 14, 'tombola': 87, 'quaterna': 48}]
-[{'terna': 57, 'cinquina': 75, 'ambo': 16, 'tombola': 87, 'quaterna': 71}]
-[{'terna': 37, 'cinquina': 64, 'ambo': 13, 'tombola': 90, 'quaterna': 53}]
-[{'terna': 20, 'cinquina': 54, 'ambo': 10, 'tombola': 82, 'quaterna': 43}]
-[{'terna': 24, 'cinquina': 62, 'ambo': 18, 'tombola': 90, 'quaterna': 52}]
-[{'terna': 18, 'cinquina': 77, 'ambo': 11, 'tombola': 87, 'quaterna': 41}]
-[{'terna': 17, 'cinquina': 60, 'ambo': 13, 'tombola': 69, 'quaterna': 38}]
-[{'terna': 32, 'cinquina': 62, 'ambo': 21, 'tombola': 78, 'quaterna': 56}]
-[{'terna': 34, 'cinquina': 78, 'ambo': 27, 'tombola': 87, 'quaterna': 58}]
-[{'terna': 26, 'cinquina': 47, 'ambo': 6, 'tombola': 84, 'quaterna': 46}]
-[{'terna': 17, 'cinquina': 66, 'ambo': 15, 'tombola': 89, 'quaterna': 58}]
-[{'terna': 35, 'cinquina': 70, 'ambo': 22, 'tombola': 89, 'quaterna': 58}]
-[{'terna': 21, 'cinquina': 56, 'ambo': 12, 'tombola': 79, 'quaterna': 37}]
-[{'terna': 41, 'cinquina': 50, 'ambo': 18, 'tombola': 89, 'quaterna': 48}]
-[{'terna': 27, 'cinquina': 71, 'ambo': 18, 'tombola': 89, 'quaterna': 52}]
-[{'terna': 27, 'cinquina': 73, 'ambo': 11, 'tombola': 83, 'quaterna': 36}]
-[{'terna': 22, 'cinquina': 74, 'ambo': 19, 'tombola': 89, 'quaterna': 37}]
-[{'terna': 39, 'cinquina': 72, 'ambo': 10, 'tombola': 87, 'quaterna': 60}]
-[{'terna': 42, 'cinquina': 66, 'ambo': 16, 'tombola': 85, 'quaterna': 57}]
-[{'terna': 16, 'cinquina': 57, 'ambo': 11, 'tombola': 71, 'quaterna': 25}]
-[{'terna': 23, 'cinquina': 48, 'ambo': 11, 'tombola': 89, 'quaterna': 27}]
-[{'terna': 23, 'cinquina': 77, 'ambo': 5, 'tombola': 83, 'quaterna': 52}]
-[{'terna': 41, 'cinquina': 66, 'ambo': 16, 'tombola': 88, 'quaterna': 50}]
-[{'terna': 30, 'cinquina': 47, 'ambo': 5, 'tombola': 88, 'quaterna': 40}]
-[{'terna': 30, 'cinquina': 64, 'ambo': 27, 'tombola': 72, 'quaterna': 42}]
-[{'terna': 48, 'cinquina': 64, 'ambo': 32, 'tombola': 90, 'quaterna': 57}]
-[{'terna': 42, 'cinquina': 63, 'ambo': 10, 'tombola': 77, 'quaterna': 46}]
-[{'terna': 43, 'cinquina': 68, 'ambo': 25, 'tombola': 89, 'quaterna': 54}]
-[{'terna': 18, 'cinquina': 57, 'ambo': 8, 'tombola': 73, 'quaterna': 45}]
-[{'terna': 33, 'cinquina': 48, 'ambo': 7, 'tombola': 70, 'quaterna': 42}]
-[{'terna': 31, 'cinquina': 70, 'ambo': 11, 'tombola': 84, 'quaterna': 43}]
-[{'terna': 44, 'cinquina': 68, 'ambo': 8, 'tombola': 79, 'quaterna': 57}]
-[{'terna': 57, 'cinquina': 81, 'ambo': 46, 'tombola': 86, 'quaterna': 68}]
-[{'terna': 39, 'cinquina': 64, 'ambo': 17, 'tombola': 80, 'quaterna': 48}]
-[{'terna': 29, 'cinquina': 61, 'ambo': 11, 'tombola': 81, 'quaterna': 38}]
-[{'terna': 24, 'cinquina': 69, 'ambo': 19, 'tombola': 87, 'quaterna': 33}]
-[{'terna': 34, 'cinquina': 52, 'ambo': 15, 'tombola': 79, 'quaterna': 46}]
-[{'terna': 37, 'cinquina': 62, 'ambo': 10, 'tombola': 87, 'quaterna': 47}]
-[{'terna': 32, 'cinquina': 63, 'ambo': 28, 'tombola': 89, 'quaterna': 44}]
-[{'terna': 29, 'cinquina': 85, 'ambo': 9, 'tombola': 87, 'quaterna': 64}]
-[{'terna': 47, 'cinquina': 65, 'ambo': 18, 'tombola': 88, 'quaterna': 52}]
-[{'terna': 19, 'cinquina': 54, 'ambo': 12, 'tombola': 84, 'quaterna': 36}]
-[{'terna': 37, 'cinquina': 68, 'ambo': 30, 'tombola': 88, 'quaterna': 54}]
-[{'terna': 24, 'cinquina': 75, 'ambo': 14, 'tombola': 83, 'quaterna': 26}]
+1 , cinquina , 40
+1 , tombola , 80
+2 , terna , 11
+2 , ambo , 10
+2 , quaterna , 25
+1 , terna , 9
+1 , ambo , 7
+2 , tombola , 85
+3 , cinquina , 57
+3 , quaterna , 32
+2 , terna , 22
+2 , tombola , 77
+2 , quaterna , 32
+3 , cinquina , 51
+3 , ambo , 2
+3 , terna , 16
+3 , cinquina , 48
+3 , ambo , 7
+3 , tombola , 64
+3 , quaterna , 30
+3 , terna , 8
+3 , cinquina , 33
+3 , ambo , 2
+3 , tombola , 77
+3 , quaterna , 10
+1 , quaterna , 34
+3 , terna , 6
+3 , cinquina , 37
+3 , ambo , 5
+3 , tombola , 77
+3 , quaterna , 34
+2 , ambo , 2
+3 , cinquina , 49
+3 , terna , 4
+3 , tombola , 76
+3 , quaterna , 23
+2 , terna , 19
+2 , ambo , 9
+2 , quaterna , 33
+3 , cinquina , 52
+3 , ambo , 9
+3 , tombola , 73
+1 , cinquina , 51
+2 , terna , 29
+2 , ambo , 3
+2 , quaterna , 39
+3 , tombola , 81
+1 , ambo , 6
+1 , tombola , 84
+2 , terna , 15
+2 , quaterna , 18
+3 , cinquina , 64
+2 , cinquina , 49
+2 , tombola , 71
+3 , terna , 18
+3 , ambo , 9
+3 , quaterna , 25
+2 , cinquina , 48
+2 , terna , 10
+2 , tombola , 83
+2 , quaterna , 21
+3 , ambo , 8
+1 , cinquina , 59
+2 , terna , 20
+2 , tombola , 72
+2 , quaterna , 34
+3 , ambo , 8
+2 , terna , 31
+2 , cinquina , 52
+2 , ambo , 7
+2 , quaterna , 38
+3 , ambo , 7
+3 , tombola , 81
+2 , ambo , 14
+3 , terna , 17
+3 , cinquina , 53
+3 , ambo , 14
+3 , tombola , 83
+3 , quaterna , 21
+2 , ambo , 4
+3 , cinquina , 39
+3 , terna , 13
+3 , tombola , 73
+3 , quaterna , 28
+1 , cinquina , 55
+2 , tombola , 82
+3 , terna , 16
+3 , ambo , 6
+3 , quaterna , 39
+2 , tombola , 77
+3 , terna , 6
+3 , cinquina , 61
+3 , ambo , 5
+3 , quaterna , 20
+1 , terna , 16
+1 , quaterna , 23
+2 , terna , 16
+2 , cinquina , 47
+2 , ambo , 8
+2 , tombola , 82
+2 , terna , 24
+2 , cinquina , 61
+2 , ambo , 16
+2 , tombola , 79
+2 , quaterna , 32
+3 , tombola , 79
+2 , terna , 18
+2 , cinquina , 54
+2 , ambo , 6
+2 , tombola , 81
+3 , terna , 18
+3 , quaterna , 45
+2 , tombola , 83
+3 , terna , 7
+3 , cinquina , 49
+3 , ambo , 3
+3 , tombola , 83
+3 , quaterna , 12
+1 , tombola , 86
+3 , terna , 13
+3 , cinquina , 57
+3 , ambo , 11
+3 , quaterna , 22
+3 , terna , 10
+3 , cinquina , 40
+3 , ambo , 4
+3 , tombola , 68
+3 , quaterna , 13
+2 , cinquina , 46
+2 , quaterna , 34
+3 , terna , 16
+3 , ambo , 6
+3 , tombola , 69
+3 , quaterna , 34
+1 , cinquina , 63
+1 , tombola , 77
+1 , quaterna , 43
+2 , ambo , 8
+3 , terna , 25
