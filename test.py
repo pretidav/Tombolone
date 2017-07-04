@@ -4,8 +4,10 @@ from TOMBOLONE import cartella,tabellone,player,partita
 import numpy as np
 
 #"""
-#A=cartella(5)
-#A.fill_cartella(1500)
+#A=cartella(3)
+#A.fill_cartella(3)
+#print A.scheda
+
 #C=tabellone(5)
 #C.fill_tabellone()
 
@@ -22,7 +24,7 @@ import numpy as np
 #print C.tab[4]
 #print C.tab[5]
 
-#david=player(100,2)
+#david=player(2)
 #david.take_cartella(2)
 #for j in range(0,len(david.collection)):
 #    print(david.collection[j])

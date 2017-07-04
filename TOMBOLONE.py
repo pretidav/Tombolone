@@ -1,4 +1,5 @@
 """
+
 Author: Francesco Capponi <capponi.francesco87@gmail.com>
         David Preti       <preti.david@gmail.com>
 
@@ -9,6 +10,7 @@ License: BSD 3 clause
 
 
 import numpy as np
+import time
 
 
 
@@ -74,6 +76,7 @@ class cartella(object):
 
         if not isinstance(seed, int):
             raise ValueError('Random seed has to be an integer!')
+        np.random.seed(seed)
         self.scheda = np.zeros((self.rows, self.__columns))
 
         for i in range(0,self.rows):
@@ -164,14 +167,11 @@ class player(tabellone):
 
     """
 
-    def __init__(self,seedplayer,rows):
-        self.__seedplayer=seedplayer
+    def __init__(self,rows):
         self.prize=dict.fromkeys(['ambo','terna','quaterna','cinquina','tombola'])
         self.__checklist=[2,3,4,5]
         self.__checkbool=[['ambo',False],['terna',False],['quaterna',False],['cinquina',False],['tombola',False]]
         self.rows=rows
-	if not isinstance(self.__seedplayer, int):
-            raise ValueError('Player ID has to be an integer!')
 
 
     def take_cartella(self,Ncart):
@@ -186,9 +186,11 @@ class player(tabellone):
     def _take_cartella(self,Ncart):
         if(Ncart>0):
             self.collection=[]
+            #np.random.seed(self.__seedplayer)
             for i in range(0,Ncart):
                 C=cartella(self.rows)
-                C.fill_cartella(i+self.__seedplayer)
+                timeseed = int((time.time() - np.fix(time.time()))*10**5)
+                C.fill_cartella(timeseed)
                 self.collection.append(C.scheda)
         elif(Ncart==0):
             temp=tabellone(self.rows)
@@ -255,7 +257,7 @@ class partita(player):
         players=[]
         self.player_prizes=[]
         for i in range(0,self.__Nplayer):
-            A=player(i,self.rows)
+            A=player(self.rows)
             A.take_cartella(self.__cartlist[i])
             players.append(A)
             self.player_prizes.append(dict())
@@ -275,7 +277,7 @@ class partita(player):
                             check=True
                 if(check):
                     self.prizes.remove(self.prizes[0])
-        #print(player_prizes)
+
 
 
 
