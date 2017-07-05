@@ -16,6 +16,22 @@ import time
 
 class cartella(object):
 
+    """
+        Creation of "cartella" class, the basic building block for tombola game.
+    
+        Private parameters
+        ----------
+        __columns : int 
+        cartella is a numpy array with rows*__columns numbers. In the traditional game __columns=5.
+        
+        Attributes
+        ----------
+        rows : int
+        number of rows of our cartella. The default is set ==3 but can be changed by users to generalize the game.
+    """
+
+
+    
 
     def __init__(self,rows):
         self.rows=rows
@@ -175,9 +191,44 @@ class player(tabellone):
 
 
     def take_cartella(self,Ncart):
+        """                                                                                                                                      
+                                                                                                                                                     
+            Draw Ncart cartella if Ncart==0 is the cartellone (e.g. 6 cartelle ordered lexicographically)                                                                                     
+            Parameters                                                                                                                                 
+            ----------                                                                                                                                 
+            Ncart : int type                                                                                                                           
+                                                                                                                                                       
+            Return:                                                                                                                                    
+            self.collection = list of Ncart cartella objects
+
+
+        """
+            
         return self._take_cartella(Ncart)
 
     def check_cartella(self,extraction):
+
+        """
+           
+           Check in every cartella if the following configuration are satisfyed: 
+           ambo     = two numbers on the same row
+           terna    = three numbers on the same row
+           quaterna = four numbers on the same row
+           cinquina = five numbers on the same row
+           tombola  = all the number inside cartella (default 15 numbers)
+
+           Parameters:
+           -----------
+           extraction = int type 
+           the number to be checked 
+
+           Return:
+           -------
+           self.prize = a dictionary with keys "ambo,terna,quaterna,cinquina,tombola" corresponding to boolean variables True, False
+           by default all the prizes are set to False, and turned to True once some of the above conditions are satisfyed.
+        
+        """
+
         return self._check_cartella(extraction)
 
 
@@ -242,10 +293,31 @@ class partita(player):
 
     def play(self):
         """
+
+           Is the main class, simulating a Tombola round with a given extracted random value among Nplayer platers. 
+
+           Parameters:
+           ----------
+           Nplayer = int type 
+           total number of players
+           cartlist = numpy array with the number of cartella for each player. len(cartlist) == Nplayer
+           rows = is the number of rows which is used in all the subclasses.
+        
+
         """
         return self._play()
 
     def log(self):
+
+        """
+
+           Print to file the log of Partita, in a csv format the player identified by the number of cartellas taken with take_cartella, the prize won, and the turn (meaning the number of random extractions) after which the prize is won. 
+
+           Ncart, "prize", turn  
+
+
+        """
+        
         return self._log()
 
 ###########################################################################################
